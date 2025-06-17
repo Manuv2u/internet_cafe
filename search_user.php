@@ -28,6 +28,7 @@ if (isset($_GET['search'])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,66 +36,87 @@ if (isset($_GET['search'])) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+         * {
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #fbc2eb, #a6c1ee 100%);
+            background: #f2f7fc;
             margin: 0;
             padding: 0;
         }
 
         .navbar {
-            background-color: #ffffffdd;
-            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            padding: 16px 30px;
             display: flex;
             align-items: center;
-            gap: 20px;
             flex-wrap: wrap;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            gap: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
         .navbar a {
-            color: #333;
+            color: white;
             text-decoration: none;
+            padding: 10px 16px;
             font-weight: 500;
-            padding: 8px 12px;
-            transition: color 0.3s ease;
+            border-radius: 8px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .navbar a:hover {
-            color: #007bff;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+            transform: scale(1.03);
+        }
+
+        .navbar a.active {
+            background-color: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar a.logout-active {
+            background-color: #dc3545;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .dropdown {
             position: relative;
-            display: inline-block;
         }
 
         .dropdown-content {
             display: none;
             position: absolute;
+            top: 42px;
+            left: 0;
             background-color: #fff;
-            min-width: 170px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-            z-index: 999;
-            border-radius: 6px;
+            min-width: 180px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 99;
         }
 
         .dropdown-content a {
-            color: #333;
-            padding: 10px 14px;
-            text-decoration: none;
             display: block;
+            padding: 10px 15px;
+            color: #333;
+            background-color: white;
         }
 
         .dropdown-content a:hover {
             background-color: #f0f0f0;
-            color: #007bff;
         }
 
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
         .container {
             max-width: 1000px;
             margin: 40px auto;
@@ -107,7 +129,14 @@ if (isset($_GET['search'])) {
         h2 {
             text-align: center;
             margin-bottom: 30px;
-			color:#8ec5fc  ;
+            color: #007bff;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
         }
 
         form input[type="text"] {
@@ -116,10 +145,10 @@ if (isset($_GET['search'])) {
             font-size: 16px;
             border-radius: 8px;
             border: 1px solid #ccc;
-            margin-bottom: 20px;
         }
 
         form button {
+            width: 80%;
             padding: 12px 20px;
             font-size: 16px;
             background: #007bff;
@@ -127,6 +156,11 @@ if (isset($_GET['search'])) {
             border: none;
             border-radius: 8px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
         }
 
         table {
@@ -166,7 +200,7 @@ if (isset($_GET['search'])) {
 <div class="navbar">
     <div style="display: flex; align-items: center; gap: 10px;">
         <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" alt="Logo" style="width: 30px;">
-        <strong style="color: #007bff; font-size: 18px;">Internet Cafe Shop</strong>
+        <strong>Internet Cafe Shop</strong>
     </div>
 
     <a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a>
@@ -197,7 +231,7 @@ if (isset($_GET['search'])) {
     <h2>Search User Details</h2>
 
     <form method="GET">
-        <input type="text" name="search" placeholder="Enter user name " value="<?= htmlspecialchars($search_term) ?>" required>
+        <input type="text" name="search" placeholder="Enter user name " value="<?= htmlspecialchars($search_term ?? '') ?>" required>
         <button type="submit">Search</button>
     </form>
 

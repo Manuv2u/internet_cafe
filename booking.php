@@ -112,8 +112,79 @@ if (isset($_GET['modeSelector']) && $_SERVER['REQUEST_METHOD'] !== 'POST') {
 	}
       body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #fbc2eb, #a6c1ee 100%);
-            
+            background: #f2f7fc ;
+        }
+        
+        .navbar {
+            background-color: #007bff;
+            color: white;
+            padding: 16px 30px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 16px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+            transform: scale(1.03);
+        }
+
+        .navbar a.active {
+            background-color: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar a.logout-active {
+            background-color: #dc3545;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 42px;
+            left: 0;
+            background-color: #fff;
+            min-width: 180px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 99;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            background-color: white;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
        .container {
     max-width: 600px;
@@ -126,7 +197,7 @@ if (isset($_GET['modeSelector']) && $_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 h2 {
     text-align: center;
-    color:  #8ec5fc;
+    color:  #007bff ;
     margin-bottom: 30px;
 }
 
@@ -151,14 +222,14 @@ input:focus, select:focus {
 }
 
  button {
-            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            background: #007bff;
             color: white;
             font-weight: bold;
             border: none;
             cursor: pointer;
         }
         button:hover {
-            background: linear-gradient(to right, #ACB6E5, #74ebd5);
+             background: #0056b3; ;
         }
 
 .info, .success {
@@ -186,26 +257,71 @@ label {
     color: #333;
 }
 
-.user-card {
+/* Session Form Styling */
+#add_session_form form {
     margin-top: 30px;
     padding: 20px;
-    background-color: #f9f9f9;
-    border-left: 6px solid #f8b500;
-    border-radius: 10px;
+    background-color: #f4f8ff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-#booking_table {
+#add_session_form label {
+    margin-top: 10px;
+    display: block;
+    font-weight: 600;
+    color: #333;
+}
+
+#add_session_form select,
+#add_session_form input {
     width: 100%;
-    margin-top: 30px;
-    border-collapse: collapse;
+    margin-top: 8px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: border 0.3s, box-shadow 0.3s;
 }
 
-#booking_table th, #booking_table td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #eee;
-    text-align: left;
+#add_session_form input:focus,
+#add_session_form select:focus {
+    border-color: #74ebd5;
+    box-shadow: 0 0 5px rgba(116, 235, 213, 0.5);
+    outline: none;
 }
 
+#add_session_form button {
+    margin-top: 20px;
+    background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    color: white;
+    border: none;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#add_session_form button:hover {
+    background: linear-gradient(to right, #ACB6E5, #74ebd5);
+}
+
+/* Booking Table Section */
+#test {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+#test label {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    color: #6a0dad;
+    margin-bottom: 20px;
+}
 
 select#modeSelector {
     margin-top: 10px;
@@ -253,69 +369,6 @@ select#modeSelector {
     border-bottom-right-radius: 10px;
 }
 
-        /* Navbar */
-          .navbar {
-   position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background-color: #ffffff;
-            padding: 14px 30px;
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            z-index: 999;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.navbar a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 12px;
-            transition: color 0.3s ease;
-}
-
-.navbar a:hover {
-    background-color: rgba(0, 123, 255, 0.1);
-    color: #007bff;
-}
-
-/* Dropdown styles */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    min-width: 180px;
-    overflow: hidden;
-    z-index: 999;
-}
-
-.dropdown-content a {
-    padding: 12px 16px;
-    color: #333;
-    display: block;
-    transition: background 0.3s;
-}
-
-.dropdown-content a:hover {
-    background-color: #f0f0f0;
-    color: #007bff;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
 
 
     </style>
@@ -326,7 +379,7 @@ select#modeSelector {
 <div class="navbar">
     <div style="display: flex; align-items: center; gap: 10px;">
         <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" alt="Logo" style="width: 30px;">
-        <strong style="color: #007bff; font-size: 18px;">Internet Cafe Shop</strong>
+        <strong>Internet Cafe Shop</strong>
     </div>
 
     <a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a>

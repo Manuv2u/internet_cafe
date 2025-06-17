@@ -14,83 +14,86 @@ $result = $conn->query($sql);
 <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background:  linear-gradient(135deg, #fbc2eb, #a6c1ee 100%);
+            background: #f2f7fc;
             margin: 0;
             padding: 64px;
         }
 
         h2 {
             text-align: center;
-            color: #333;
+            color: #007bff;
             margin-bottom: 20px;
         }
                 /* Navbar */
-          .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background-color: #ffffff;
-            padding: 14px 30px;
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            z-index: 999;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.navbar a {
-    color: #333;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 10px 16px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+            .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #007bff;
+    padding: 14px 30px;
     display: flex;
     align-items: center;
-    gap: 6px;
-}
-
-.navbar a:hover {
-    background-color: rgba(0, 123, 255, 0.1);
-    color: #007bff;
-}
-
-/* Dropdown styles */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    min-width: 180px;
-    overflow: hidden;
+    gap: 30px;
     z-index: 999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.dropdown-content a {
-    padding: 12px 16px;
-    color: #333;
-    display: block;
-    transition: background 0.3s;
-}
+        .navbar {
+            background-color: #007bff;
+            padding: 12px 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
 
-.dropdown-content a:hover {
-    background-color: #f0f0f0;
-    color: #007bff;
-}
+        .navbar a, .navbar strong {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+        .navbar a:hover {
+            background-color: white;
+            color: #007bff;
+            border-radius: 6px;
+        }
 
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 170px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            border-radius: 6px;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 10px 14px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f0f0f0;
+            color: #007bff;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
         .add-link {
             display: block;
             text-align: center;
@@ -153,7 +156,7 @@ $result = $conn->query($sql);
 <div class="navbar">
     <div style="display: flex; align-items: center; gap: 10px;">
         <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" alt="Logo" style="width: 30px;">
-        <strong style="color: #007bff; font-size: 18px;">Internet Cafe Shop</strong>
+        <strong >Internet Cafe Shop</strong>
     </div>
 
     <a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a>

@@ -48,69 +48,83 @@ $result = $conn->query("SELECT * FROM user");
         * { box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #fbc2eb, #a6c1ee 100%);
+            background: #f2f7fc ;
             margin: 0;
         }
         h2 {
             text-align: center;
-            color: #333;
+            color:  #007bff;
             margin-bottom: 20px;
             margin-top: 30px;
         }
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.85);
-            padding: 14px 30px;
+       .navbar {
+            background-color: #007bff;
+            color: white;
+            padding: 16px 30px;
             display: flex;
             align-items: center;
-            gap: 25px;
             flex-wrap: wrap;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid #ddd;
+            gap: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
+
         .navbar a {
-            color: #333;
+            color: white;
             text-decoration: none;
-            font-weight: 500;
             padding: 10px 16px;
+            font-weight: 500;
             border-radius: 8px;
-            transition: all 0.3s ease;
+            transition: 0.3s;
             display: flex;
             align-items: center;
             gap: 6px;
         }
+
         .navbar a:hover {
-            background-color: rgba(0, 123, 255, 0.1);
-            color: #007bff;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+            transform: scale(1.03);
         }
+
+        .navbar a.active {
+            background-color: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar a.logout-active {
+            background-color: #dc3545;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
         .dropdown {
             position: relative;
         }
+
         .dropdown-content {
             display: none;
             position: absolute;
-            top: 100%;
+            top: 42px;
             left: 0;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            background-color: #fff;
             min-width: 180px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            border-radius: 8px;
             overflow: hidden;
-            z-index: 999;
+            z-index: 99;
         }
+
         .dropdown-content a {
-            padding: 12px 16px;
-            color: #333;
             display: block;
-            transition: background 0.3s;
+            padding: 10px 15px;
+            color: #333;
+            background-color: white;
         }
+
         .dropdown-content a:hover {
             background-color: #f0f0f0;
-            color: #007bff;
         }
+
         .dropdown:hover .dropdown-content {
             display: block;
         }
@@ -146,7 +160,7 @@ $result = $conn->query("SELECT * FROM user");
             border-bottom: 1px solid #ddd;
         }
         th {
-            background-color:#8ec5fc ;
+            background-color:  #007bff;
             color: white;
             font-weight: 600;
         }
@@ -180,7 +194,7 @@ $result = $conn->query("SELECT * FROM user");
 <div class="navbar">
     <div style="display: flex; align-items: center; gap: 10px;">
         <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" alt="Logo" style="width: 30px;">
-        <strong style="color: #007bff; font-size: 18px;">Internet Cafe Shop</strong>
+        <strong >Internet Cafe Shop</strong>
     </div>
 
     <a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a>

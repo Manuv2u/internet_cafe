@@ -72,69 +72,87 @@ if (!isset($result)) {
      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-	 * {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #fbc2eb, #a6c1ee 100%);
-        }
-        main{
-            padding: 10px 20px;
-            margin-top : 60px;
-        }
-		.navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background-color: #ffffff;
-            padding: 14px 30px;
+	* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background:  #f2f7fc;
+    color: #333;
+}
+
+main {
+    padding: 20px;
+    margin-top: 20px;
+}
+  .navbar {
+            background-color: #007bff;
+            color: white;
+            padding: 16px 30px;
             display: flex;
             align-items: center;
-            gap: 30px;
-            z-index: 999;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+            gap: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
         .navbar a {
-          color:   #333;
+            color: white;
             text-decoration: none;
+            padding: 10px 16px;
             font-weight: 500;
-            padding: 8px 12px;
-            transition: color 0.3s ease;
+            border-radius: 8px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .navbar a:hover {
-            color: #007bff;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+            transform: scale(1.03);
+        }
+
+        .navbar a.active {
+            background-color: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar a.logout-active {
+            background-color: #dc3545;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .dropdown {
             position: relative;
-            display: inline-block;
         }
 
         .dropdown-content {
             display: none;
             position: absolute;
+            top: 42px;
+            left: 0;
             background-color: #fff;
-            min-width: 170px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-            z-index: 999;
-            border-radius: 6px;
+            min-width: 180px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 99;
         }
 
         .dropdown-content a {
-            color: #333;
-            padding: 10px 14px;
-            text-decoration: none;
             display: block;
+            padding: 10px 15px;
+            color: #333;
+            background-color: white;
         }
 
         .dropdown-content a:hover {
             background-color: #f0f0f0;
-            color: #007bff;
         }
 
         .dropdown:hover .dropdown-content {
@@ -142,92 +160,106 @@ if (!isset($result)) {
         }
 
 
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
+/* Heading */
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #007bff;
+}
 
-        form {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
+/* Form Controls */
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
 
-        input[type="date"], button {
-            padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-        }
+input[type="date"],
+button {
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    outline: none;
+}
 
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            transition: 0.3s ease;
-            cursor: pointer;
-        }
+button {
+    background-color: #007bff;
+    color: white;
+    font-weight: 500;
+    border: none;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
 
-        button.refresh-btn {
-            background-color: #28a745;
-        }
+button.refresh-btn {
+    background-color: #28a745;
+}
 
-        button:hover {
-            opacity: 0.9;
-        }
+button:hover {
+    opacity: 0.92;
+}
 
-        table {
-            width: 90%;
-            
-            margin: auto;
-            border-collapse: collapse;
-            background: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
+/* Table Styles */
+table {
+    width: 95%;
+    margin: auto;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
 
-        th, td {
-            padding: 12px 15px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
+th {
+    background-color: #007bff;
+    color: white;
+    font-weight: 600;
+    padding: 14px;
+    text-align: center;
+}
 
-        th {
-            background-color: #8ec5fc;
-            background-image:  #007bff;
-            color: white;
-        }
+td {
+    padding: 12px;
+    text-align: center;
+    font-size: 15px;
+    border-bottom: 1px solid #eee;
+}
 
-        tr:nth-child(even) {
-            background-color: #f8f8f8;
-        }
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
 
-        tr:hover {
-            background-color: #eef6ff;
-        }
+tr:hover {
+    background-color: #eaf3ff;
+}
 
-        .total {
-            text-align: center;
-            font-weight: bold;
-            margin-top: 20px;
-            font-size: 18px;
-            color: #333;
-        }
+/* Totals */
+.total {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+}
 
-        .pdf-button {
-            text-align: center;
-            margin-top: 25px;
-        }
+/* PDF Button */
+.pdf-button {
+    text-align: center;
+    margin-top: 25px;
+}
 
-        .pdf-button button {
-            background-color: #ff5722;
-            font-weight: bold;
-        }
+.pdf-button button {
+    background-color: #007bff ;
+    color: white;
+    font-weight: bold;
+    padding: 10px 18px;
+    border-radius: 8px;
+}
     </style>
 </head>
 <body>
@@ -236,7 +268,7 @@ if (!isset($result)) {
 <div class="navbar">
     <div style="display: flex; align-items: center; gap: 10px;">
         <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" alt="Logo" style="width: 30px;">
-        <strong style="color: #007bff; font-size: 18px;">Internet Cafe Shop</strong>
+        <strong >Internet Cafe Shop</strong>
     </div>
 
     <a href="dashboard.php"><i class="fas fa-home"></i> Dashboard</a>
