@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Register - Internet Cafe Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-         * {
+        * {
             box-sizing: border-box;
         }
         body {
@@ -57,8 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             align-items: center;
             justify-content: center;
         }
-
-
         .register-container {
             width: 400px;
             background: white;
@@ -66,18 +64,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
-
         .register-container h2 {
             text-align: center;
             margin-bottom: 20px;
             color: #333;
         }
-
         .input-group {
             margin-bottom: 15px;
             position: relative;
         }
-
         .input-group i {
             position: absolute;
             top: 50%;
@@ -85,7 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             transform: translateY(-50%);
             color: #999;
         }
-
         .input-group input {
             width: 100%;
             padding: 12px 12px 12px 40px;
@@ -93,29 +87,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 8px;
             font-size: 15px;
         }
-
         .input-group input:focus {
             outline: none;
             border-color: #2563eb;
         }
-
         .alert {
             padding: 10px;
             border-radius: 8px;
             margin-bottom: 15px;
             font-size: 14px;
         }
-
         .alert-danger {
             background: #fee2e2;
             color: #b91c1c;
         }
-
         .alert-success {
             background: #dcfce7;
             color: #15803d;
         }
-
+        .error-msg {
+            color: #dc2626;
+            font-size: 13px;
+            margin-top: 4px;
+            padding-left: 40px;
+        }
         button {
             width: 100%;
             padding: 12px;
@@ -127,17 +122,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 16px;
             cursor: pointer;
         }
-
         button:disabled {
             background: #a5b4fc;
         }
-
         .register-footer {
             margin-top: 15px;
             text-align: center;
             font-size: 14px;
         }
-
         .register-footer a {
             color: #2563eb;
             text-decoration: none;
@@ -153,14 +145,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="input-group">
             <i class="fa fa-user"></i>
             <input type="text" id="username" name="username" placeholder="Username" required>
+            <div class="error-msg" id="usernameError"></div>
         </div>
         <div class="input-group">
             <i class="fa fa-envelope"></i>
             <input type="email" id="email" name="email" placeholder="Email (must be @gmail.com)" required>
+            <div class="error-msg" id="emailError"></div>
         </div>
         <div class="input-group">
             <i class="fa fa-lock"></i>
             <input type="password" id="password" name="password" placeholder="Password" required>
+            <div class="error-msg" id="passwordError"></div>
         </div>
         <button type="submit" id="registerBtn" disabled>Register</button>
     </form>
@@ -175,24 +170,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     const passwordInput = document.getElementById("password");
     const registerBtn = document.getElementById("registerBtn");
 
+    const usernameError = document.getElementById("usernameError");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+
     function validateForm() {
         const username = usernameInput.value.trim();
         const email = emailInput.value.trim();
         const password = passwordInput.value;
 
-        const isValidUsername = /^[A-Za-z]+$/.test(username);
-        const isValidEmail = /^[^\s@]+@gmail\.com$/.test(email);
-        const isValidPassword = password.length >= 8 && password.length <= 10 &&
-            /[A-Z]/.test(password) &&
-            /[a-z]/.test(password) &&
-            /[0-9]/.test(password) &&
-            /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        let isValid = true;
 
-        const formValid = username !== "" && email !== "" && password !== "" &&
-            isValidUsername && isValidEmail && isValidPassword;
+        // Username validation
+        if (!/^[A-Za-z]+$/.test(username)) {
+            usernameError.textContent = "Username must contain only letters.";
+            isValid = false;
+        } else {
+            usernameError.textContent = "";
+        }
 
-        registerBtn.disabled = !formValid;
-        return formValid;
+        // Email validation
+        if (!/^[^\s@]+@gmail\.com$/.test(email)) {
+            emailError.textContent = "Only valid @gmail.com addresses allowed.";
+            isValid = false;
+        } else {
+            emailError.textContent = "";
+        }
+
+        // Password validation
+        if (
+            password.length < 8 || password.length > 10 ||
+            !/[A-Z]/.test(password) ||
+            !/[a-z]/.test(password) ||
+            !/[0-9]/.test(password) ||
+            !/[!@#$%^&*(),.?":{}|<>]/.test(password)
+        ) {
+            passwordError.textContent = "Password must be 8–10 characters long, include uppercase, lowercase, number, and special character.";
+            isValid = false;
+        } else {
+            passwordError.textContent = "";
+        }
+
+        registerBtn.disabled = !isValid;
+        return isValid;
     }
 
     usernameInput.addEventListener("input", validateForm);
