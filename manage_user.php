@@ -225,12 +225,16 @@ $result = $conn->query("SELECT * FROM user");
 <h2>Manage Users</h2>
 
 <table>
-    <tr><th>ID</th><th>Name</th><th>Email</th><th>Actions</th></tr>
+    <tr><th>ID</th><th>Name</th><th>Email</th><th>address</th><th>Mobile number</th><th>Actions</th></tr>
     <?php while ($row = $result->fetch_assoc()): ?>
     <tr>
         <td><?= $row['id'] ?></td>
         <td><?= htmlspecialchars($row['name']) ?></td>
         <td><?= htmlspecialchars($row['email']) ?></td>
+         <td><?= htmlspecialchars($row['address']) ?></td>
+          <td><?= htmlspecialchars($row['mobile_number']) ?></td>
+        
+        
         <td>
             <a href="edit_user.php?id=<?= $row['id'] ?>">Edit</a> |
             <span class="delete-btn" data-id="<?= $row['id'] ?>">Delete</span>

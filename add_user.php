@@ -40,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $checkEmail->close();
     }
 
-    if (strlen($address) < 10) {
-        $errors[] = "Address must be at least 10 characters long.";
+    if (strlen($address) < 6) {
+        $errors[] = "Address must be at least 2 characters long.";
     }
 
     if (empty($errors)) {
@@ -176,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             padding: 12px;
             border-radius: 8px;
             border: 1px solid #ccc;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             font-size: 15px;
             transition: 0.3s;
         }
@@ -193,7 +193,7 @@ textarea {
     padding: 12px;
     border-radius: 8px;
     border: 1px solid #ccc;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 15px;
     transition: 0.3s;
 }
@@ -229,8 +229,10 @@ textarea:focus {
             color: green;
         }
 
-        .error {
+        .field-error {
             color: red;
+			font-size : 12px;
+			margin-bottom : 10px;
         }
 
         .logo {
@@ -350,8 +352,8 @@ document.querySelector("form").addEventListener("submit", function (e) {
         isValid = false;
     }
 
-    if (!address.value.trim() || address.value.trim().length < 10) {
-        addressError.textContent = "Address must be at least 10 characters long.";
+    if (!address.value.trim() || address.value.trim().length < 6) {
+        addressError.textContent = "Address must be at least 2 characters long.";
         isValid = false;
     }
 
@@ -380,6 +382,9 @@ function capitalizeName(input) {
         .map(w => w.charAt(0).toUpperCase() + w.slice(1))
         .join(' ');
 }
+ document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector("form").reset();
+    });
 </script>
 
 </body>

@@ -319,7 +319,7 @@ window.onload = function () {
     const back = document.getElementById('back_button')
     back.addEventListener('click', function(){
         var host =   "http://" + window.location.host;
-        let url = new URL(host+"/internet_cafe---P3/Booking.php")
+        let url = new URL(host+"/internet_cafe/booking.php")
         window.location.href = url.toString()
     })
 

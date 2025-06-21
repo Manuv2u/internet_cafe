@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 15px;
             background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            margin-top: 120px;
+            margin-top: 68px;
         }
 
         h2 {
