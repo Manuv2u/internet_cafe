@@ -35,7 +35,6 @@ if(isset($_GET['booking_id'])){
     $booking = $stmt->get_result()->fetch_assoc();
     $start_session = $booking['start_session'];
     $start_time = new DateTime($start_session);
-    echo $start_time->format('Y-m-d\TH:i');
 }
 
 
