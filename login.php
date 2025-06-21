@@ -258,8 +258,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             usernameError.textContent = "";
         }
 
-        if (password.length < 6) {
-            passwordError.textContent = "Password must be at least 6 characters.";
+        if (password.length < 8) {
+            passwordError.textContent = "Password must be at least 8 characters.";
             isValid = false;
         } else {
             passwordError.textContent = "";
